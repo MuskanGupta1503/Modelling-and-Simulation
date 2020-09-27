@@ -64,7 +64,13 @@ plt.xlabel('Time in mins')
 plt.ylabel('Vehicle Number')
 
 plt.show()
-# plt.save()
+# plt.savefig('gantt.png')
+
+# Report Generation Program
+def ReportGeneration():
+      print("Hello from a function")
+
+ReportGeneration()
 
 # https://futurestud.io/tutorials/matplotlib-stacked-bar-plots
 # https://matplotlib.org/3.1.3/gallery/lines_bars_and_markers/horizontal_barchart_distribution.html
