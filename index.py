@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # y-axis
-year = [ 1 , 2 , 3 , 4 , 5 , 6]
+vehicle_no = [ 1 , 2 , 3 , 4 , 5 , 6]
 
 # gannt chart content
 parking = [10, 20, 15, 30, 25, 40]
@@ -40,35 +40,76 @@ add9=list(np.add(add8,unloading3))
 
 
 # Gannt chart Making
-plt.barh(year, parking, color="grey")  
+plt.barh(vehicle_no, parking, color="grey")  
 # careful: notice "bottom" parameter became "left"
-plt.barh(year, loading, left=parking, color="green")
+plt.barh(vehicle_no, loading, left=parking, color="green")
 
 #plotting trip 1
-plt.barh(year, moving1, left=add1, color="blue") 
-plt.barh(year, unloading1, left=add2, color="red") 
-plt.barh(year, idle1, left=add3, color="grey") 
+plt.barh(vehicle_no, moving1, left=add1, color="blue") 
+plt.barh(vehicle_no, unloading1, left=add2, color="red") 
+plt.barh(vehicle_no, idle1, left=add3, color="grey") 
 
 #plotting trip 2
-plt.barh(year, moving2, left=add4, color="blue") 
-plt.barh(year, unloading2, left=add5, color="red") 
-plt.barh(year, idle2, left=add6, color="grey")
+plt.barh(vehicle_no, moving2, left=add4, color="blue") 
+plt.barh(vehicle_no, unloading2, left=add5, color="red") 
+plt.barh(vehicle_no, idle2, left=add6, color="grey")
 
 #plotting trip 3
-plt.barh(year, moving3, left=add7, color="blue") 
-plt.barh(year, unloading3, left=add8, color="red") 
-plt.barh(year, idle3, left=add9, color="grey") 
+plt.barh(vehicle_no, moving3, left=add7, color="blue") 
+plt.barh(vehicle_no, unloading3, left=add8, color="red") 
+plt.barh(vehicle_no, idle3, left=add9, color="grey") 
 
 # we also need to switch the labels
 plt.xlabel('Time in mins')  
 plt.ylabel('Vehicle Number')
 
-plt.show()
+# plt.show()
 # plt.savefig('gantt.png')
 
 # Report Generation Program
 def ReportGeneration():
-      print("Hello from a function")
+      # print("Hello from a function \n")
+      
+      # idle time for all vehicles
+      idle_list = [] 
+      for i in range(0, len(parking)): 
+            idle_list.append(parking[i] + 
+            idle1[i] + 
+            idle2[i] +
+            idle3[i]
+            )
+      print("Idle time:")
+      for i in range(0,len(parking)):
+            print("Vehicle no " + str(i+1)+ ": " +str(idle_list[i]))
+      # print(idle_list)
+      print("\n")
+
+
+      #used time for all vehicles
+      used_list=[]
+      for i in range(0, len(parking)): 
+            used_list.append(loading[i]+
+            moving1[i]+
+            unloading1[i]+
+            moving2[i]+
+            unloading2[i]+
+            moving3[i]+
+            unloading3[i]
+            )
+      print("Used time:")
+      for i in range(0,len(parking)):
+            print("Vehicle no " + str(i+1)+ ": " +str(used_list[i]))
+      # print(used_list)
+      print("\n")
+
+
+      #Average Loading Time
+      avg_loading=0;
+      for i in range(0, len(parking)): 
+            avg_loading=loading[i]+avg_loading
+      avg_loading=avg_loading/6
+      print("Average Loading Time")
+      print(avg_loading)
 
 ReportGeneration()
 
