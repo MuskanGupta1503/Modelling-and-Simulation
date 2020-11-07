@@ -1,45 +1,87 @@
 # Importing the matplotlb.pyplot 
 import matplotlib.pyplot as plt 
 import numpy as np
+import random
 
 # y-axis
 vehicle_no = [ 1 , 2 , 3 , 4 , 5 , 6]
 
 # gannt chart content
-parking = [10, 20, 15, 30, 25, 40]
-loading = [100, 70, 70, 50, 80, 90]  
+# parking = [10, 20, 15, 30, 25, 40]
+parking = []
+for i in range(0,6):
+    n = random.choice([10,15,20,25,30,35,40])
+    parking.append(n)
+print("Parking Time: " + str(parking))
 
-# trip1
-moving1 = [160, 270, 250, 190, 250, 180]  
-unloading1 = [40, 30, 40, 50, 35, 40]
-idle1=[25, 20, 30, 100, 0, 60]
+# loading = [100, 70, 70, 50, 80, 90]  
+loading = []
+for i in range(0,6):
+    n = random.randint(5,10)
+    n=n*10
+    loading.append(n)
+print("Loading Time: "+str(loading))
 
+# TRIP1
+# moving1 = [160, 270, 250, 190, 250, 180]
+moving1=[]
+for i in range(0,6):
+    n = random.randint(15,30)
+    n=n*10
+    moving1.append(n)
+print(moving1)
+
+# unloading1 = [40, 30, 40, 50, 35, 40]
+unloading1=[]
+for i in range(0,6):
+    n = random.randint(3,5)
+    n=n*10
+    unloading1.append(n)
+print(unloading1)
+
+# idle1=[25, 20, 30, 100, 0, 60]
+idle1=[]
+for i in range(0,6):
+      n=random.choice([25, 20, 30, 100, 0, 60])
+      idle1.append(n)
+print("Idle time is: " + str(idle1))
+
+# Add to plot for trip1
 add1=list(np.add(parking,loading))
 add2=list(np.add(add1,moving1))
 add3=list(np.add(add2,unloading1))
 
 
-# trip2
-moving2 = [70, 30, 240, 200, 150, 210]  
+# TRIP2
+# moving2 = [70, 30, 240, 200, 150, 210]
+moving2=[]
+for i in range(0,6):
+    n = random.randint(3,25)
+    n=n*10
+    moving2.append(n)
+print("Moving 2: "+str(moving2))
+  
 unloading2 = [40, 20, 25, 50, 30, 20]
 idle2=[0, 0, 10, 20, 0, 60]
 
+# Add to plot for trip2
 add4=list(np.add(add3,idle1))
 add5=list(np.add(add4,moving2))
 add6=list(np.add(add5,unloading2))
 
 
-# trip3
+# TRIP3
 moving3 = [140, 130, 60, 20, 0, 0]  
 unloading3 = [20, 40, 30, 10, 0, 0]
 idle3=[195, 170, 30, 80, 230, 100]
 
+# Add to plot for trip3
 add7=list(np.add(add6,idle2))
 add8=list(np.add(add7,moving3))
 add9=list(np.add(add8,unloading3))
 
 
-# Gannt chart Making
+# GANNT CHART MAKING
 plt.barh(vehicle_no, parking, color="grey")  
 # careful: notice "bottom" parameter became "left"
 plt.barh(vehicle_no, loading, left=parking, color="green")
@@ -63,7 +105,7 @@ plt.barh(vehicle_no, idle3, left=add9, color="grey")
 plt.xlabel('Time in mins')  
 plt.ylabel('Vehicle Number')
 
-# plt.show()
+plt.show()
 # plt.savefig('gantt.png')
 
 # Report Generation Program
@@ -111,7 +153,7 @@ def ReportGeneration():
       print("Average Loading Time")
       print(avg_loading)
 
-ReportGeneration()
+# ReportGeneration()
 
 # https://futurestud.io/tutorials/matplotlib-stacked-bar-plots
 # https://matplotlib.org/3.1.3/gallery/lines_bars_and_markers/horizontal_barchart_distribution.html
