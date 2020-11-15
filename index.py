@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random
 from numpy import random
+import math
 
 # y-axis
 vehicle_no = [ 1 , 2 , 3 , 4 , 5 , 6]
@@ -13,7 +14,10 @@ parking = []
 for i in range(0,6):
     n = random.choice([10,15,20,25,30,35,40])
     parking.append(n)
-print("Parking Time: " + str(parking))
+print(
+      "Parking Time: " +
+      str(parking)
+      )
 
 # loading = [100, 70, 70, 50, 80, 90]  
 loading = []
@@ -21,7 +25,10 @@ for i in range(0,6):
     n = random.randint(5,10)
     n=n*10
     loading.append(n)
-print("Loading Time: "+str(loading))
+print(
+      "Loading Time: "+
+      str(loading)
+      )
 
 # TRIP1
 # moving1 = [160, 270, 250, 190, 250, 180]
@@ -30,7 +37,10 @@ for i in range(0,6):
     n = random.randint(15,30)
     n=n*10
     moving1.append(n)
-print(moving1)
+print(
+      "First Trip Moving time: "+
+      str(moving1)
+)
 
 # unloading1 = [40, 30, 40, 50, 35, 40]
 unloading1=[]
@@ -38,14 +48,20 @@ for i in range(0,6):
     n = random.randint(3,5)
     n=n*10
     unloading1.append(n)
-print(unloading1)
+print(
+      "Unloading Time: "+ 
+      str(unloading1)
+)
 
 # idle1=[25, 20, 30, 100, 0, 60]
 idle1=[]
 for i in range(0,6):
       n=random.choice([25, 20, 30, 100, 0, 60])
       idle1.append(n)
-print("Idle time 1 is: " + str(idle1))
+print(
+      "Idle time 1 is: " + 
+      str(idle1)
+      )
 
 # Add to plot for trip1
 add1=list(np.add(parking,loading))
@@ -60,7 +76,10 @@ for i in range(0,6):
     n = random.randint(3,25)
     n=n*10
     moving2.append(n)
-print("Moving 2: "+str(moving2))
+print(
+      "Moving 2: "+
+      str(moving2)
+      )
   
 # unloading2 = [40, 20, 25, 50, 30, 20]
 unloading2=[]
@@ -68,10 +87,16 @@ for i in range(0,6):
     n = random.randint(2,5)
     n=n*10
     unloading2.append(n)
-print("Unloading 2: "+str(unloading2))
+print(
+      "Unloading 2: "+
+      str(unloading2)
+      )
 
 idle2=[0, 0, 10, 120, 0, 60]
-print("Idle 2 is :" + str(idle2))
+print(
+      "Idle 2 is :" + 
+      str(idle2)
+)
 
 # Add to plot for trip2
 add4=list(np.add(add3,idle1))
@@ -86,7 +111,10 @@ moving3 = random.choice(
       # p=[0.25, 0.18 , 0.19 , 0.19, 0.19  ], 
       size=(6)
       )
-print("Moving 3 is :" + str(moving3))
+print(
+      "Moving 3 is :" + 
+      str(moving3)
+      )
 
 # unloading3 = [20, 40, 30, 10, 0, 0]
 unloading3=[]
@@ -97,7 +125,10 @@ for i in range(0,6):
             n = random.randint(2,5)
             n=n*10
             unloading3.append(n)     
-print("Unloading 3: "+str(unloading3))
+print(
+      "Unloading 3: "+
+      str(unloading3)
+      )
 
 # idle3=[195, 170, 30, 80, 230, 100]
 
@@ -115,7 +146,10 @@ for i in range(0,6):
             idle3.append(950-n)
       else:
             idle3.append(0)
-print("Idle 3: " + str(idle3))
+print(
+      "Idle 3: " + 
+      str(idle3)
+      )
 
 # GANNT CHART MAKING
 plt.barh(vehicle_no, parking, color="grey")  
@@ -141,17 +175,70 @@ plt.barh(vehicle_no, idle3, left=add9, color="grey")
 plt.xlabel('Time in mins')  
 plt.ylabel('Vehicle Number')
 
-plt.show()
+# plt.show()
 # plt.savefig('gantt.png')
 print("\n")
 
 # Report Generation Program
 def ReportGeneration():
 
+      # Data
+      print ("VNo" +
+       "\t" + 
+       "P" +
+       "\t" + 
+       "L" + 
+       "\t" + 
+       "M1" +
+       "\t"+
+       "U1" +
+       "\t"+
+       "I1"+
+       "\t" + 
+       "M2" +
+       "\t"+
+       "U2" +
+       "\t"+
+       "I2"+
+       "\t" + 
+       "M3" +
+       "\t"+
+       "U3" +
+       "\t"+
+       "I3"
+       )
+      for i in range(0,len(parking)):
+            print(
+                  str(i+1)+
+                  "\t"+
+                  str(parking[i])+
+                  "\t"+
+                  str(loading[i])+
+                  "\t"+
+                  str(moving1[i])+
+                  "\t"+
+                  str(unloading1[i])+
+                  "\t"+
+                  str(idle1[i])+
+                  "\t"+
+                  str(moving2[i])+
+                  "\t"+
+                  str(unloading2[i])+
+                  "\t"+
+                  str(idle2[i])+
+                  "\t"+
+                  str(moving3[i])+
+                  "\t"+
+                  str(unloading3[i])+
+                  "\t"+
+                  str(idle3[i])
+                  )
+
       # IDLE time for all vehicles
       idle_list = [] 
       for i in range(0, len(parking)): 
-            idle_list.append(parking[i] + 
+            idle_list.append(
+            parking[i] + 
             idle1[i] + 
             idle2[i] 
             # idle3[i]
@@ -159,13 +246,18 @@ def ReportGeneration():
       
       print("Idle time:")
       for i in range(0,len(parking)):
-            print("Vehicle no " + str(i+1)+ ": " +str(idle_list[i]))
+            print(
+                  "Vehicle no " 
+                  + str(i+1)+ ": " 
+                  +str(idle_list[i])
+                  )
       print("\n")
 
       #USED time for all vehicles
       used_list=[]
       for i in range(0, len(parking)): 
-            used_list.append(loading[i]+
+            used_list.append(
+            loading[i]+
             moving1[i]+
             unloading1[i]+
             moving2[i]+
@@ -175,34 +267,71 @@ def ReportGeneration():
             )
       print("Used time:")
       for i in range(0,len(parking)):
-            print("Vehicle no " + str(i+1)+ ": " +str(used_list[i]))
+            print(
+                  "Vehicle no " + 
+                  str(i+1)+ ": " 
+                  +str(used_list[i])
+                  )
       # print(used_list)
       print("\n")
 
       # ANALYSIS for all vehicles
       print("Analysis For all vehicles")
+
       # Total Idle Time
       sum_idle=0
       for i in range(0,len(parking)):
             sum_idle=sum_idle+idle_list[i]
-      print("Total Idle Time: " 
-      + str(sum_idle))
+      print(
+            "Total Idle Time: " 
+            + str(sum_idle)
+            )
 
       # Total Used Time
       sum_used=0
       for i in range(0,len(parking)):
             sum_used=sum_used+used_list[i]
-      print("Total Used Time: " 
-      + str(sum_used))
+      print(
+            "Total Used Time: " 
+            + str(sum_used)
+            )
 
       #Average Loading Time
       avg_loading=0;
       for i in range(0, len(parking)): 
             avg_loading=loading[i]+avg_loading
       avg_loading=avg_loading/6
-      print("Average Loading Time: " + str(avg_loading))
+      print(
+            "Average Loading Time: " + 
+            str(round(avg_loading,2))
+            )
+
+      #Average Loading Time
+      avg_unloading=0;
+      for i in range(0, len(parking)): 
+            avg_unloading=avg_unloading
+            +unloading1[i]
+            +unloading2[i]
+            +unloading3[i]
+      avg_unloading=avg_loading/6
+      print(
+            "Average UnLoading Time: " + 
+            str(round(avg_unloading,2))
+      )
+
+      # Overall Idle time percentage 
+      # of all utilisation time
+      total_time=5700
+      per_utiliasation=sum_idle/total_time
+      per_utiliasation=per_utiliasation*100
+      print(
+      "Overall Idle time percentage of all utilisation time " + 
+      str(round(per_utiliasation,2)) +
+      " %"
+      )
 
 ReportGeneration()
 
+# good references
 # https://futurestud.io/tutorials/matplotlib-stacked-bar-plots
 # https://matplotlib.org/3.1.3/gallery/lines_bars_and_markers/horizontal_barchart_distribution.html
