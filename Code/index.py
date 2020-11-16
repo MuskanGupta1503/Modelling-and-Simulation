@@ -175,7 +175,7 @@ plt.barh(vehicle_no, idle3, left=add9, color="grey")
 plt.xlabel('Time in mins')  
 plt.ylabel('Vehicle Number')
 
-# plt.show()
+plt.show()
 # plt.savefig('gantt.png')
 print("\n")
 
